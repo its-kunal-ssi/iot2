@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">iot2</string>
+    <string name="turn_on_vehicle">Turn On Vehicle</string>
+    <string name="turn_on_headlight">Turn on Headlight</string>
+    <string name="turn_on_horn">Turn On Horn</string>
+    <string name="iot_vehicle">IOT Vehicle</string>
+</resources>
