@@ -1,11 +1,18 @@
 package com.kunal.iot2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,15 +35,43 @@ public class MainActivity extends AppCompatActivity {
         Button savebtn = findViewById(R.id.buttonSave);
         Button findbtn = findViewById(R.id.buttonFind);
 
+
+
         savebtn.setOnClickListener(view -> {
-            powerbtn.
-            veh.put("power", )
+
+            powerbtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        veh.put("power",1);
+                    } else {
+                        veh.put("power",0);
+                    }
+                }
+            });
+
+            headLightbtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        veh.put("headlight",1);
+                    } else {
+                        veh.put("headlight",0);
+                    }
+                }
+            });
+            hornbtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        veh.put("horn",1);
+                        Toast.makeText(MainActivity.this, "Data Added", Toast.LENGTH_SHORT).show();
+                    } else {
+                        veh.put("horn",0);
+                    }
+                }
+            });
+            vehRef.setValue(veh);
+            Toast.makeText(MainActivity.this, "Data Added", Toast.LENGTH_SHORT).show();
         });
 
-        veh.put("horn",1);
-        veh.put("power",1);
-        veh.put("headlight",0);
 
-        vehRef.setValue(veh);
     }
 }
